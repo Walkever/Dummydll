@@ -4,7 +4,7 @@
 #if defined (_MSC_VER)
 #pragma warning(disable: 4251)
 #endif
-#if defined(Dummydll_EXPORTS)
+#if defined(DUMMYDLL_EXPORTS)
 #define  DUMMYDLL_API __declspec(dllexport)
 #else
 #define  DUMMYDLL_API __declspec(dllimport)
