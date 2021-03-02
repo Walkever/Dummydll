@@ -81,3 +81,10 @@ install(TARGETS Dummydll
 )
 
 export(EXPORT dummyTargets FILE dummyTargets.cmake)
+
+if(INSTALL_CMAKE_PACKAGE_MODULE)
+    set(CMAKE_INSTALL_CONFIGDIR ${CMAKE_INSTALL_LIBDIR}/cmake/dummy)
+    install(EXPORT dummyTargets
+        DESTINATION ${CMAKE_INSTALL_CONFIGDIR}
+    )
+endif()
