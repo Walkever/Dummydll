@@ -2,6 +2,12 @@ CMAKE_MINIMUM_REQUIRED (VERSION 3.0)
 project(Dummydll)
 Add_library(Dummydll SHARED dllmain.cpp dummydll.cpp dummydll.h pch.cpp pch.h targetver.h)
 
+target_include_directories(Dummydll PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
+
 if(BUILD_FRAMEWORK)
     set_target_properties(dummy PROPERTIES
         FRAMEWORK TRUE
