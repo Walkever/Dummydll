@@ -87,4 +87,19 @@ if(INSTALL_CMAKE_PACKAGE_MODULE)
     install(EXPORT dummyTargets
         DESTINATION ${CMAKE_INSTALL_CONFIGDIR}
     )
+   include(CMakePackageConfigHelpers)
+
+    configure_package_config_file(${PROJECT_SOURCE_DIR}/cmake/OggConfig.cmake.in ${PROJECT_BINARY_DIR}/OggConfig.cmake
+        INSTALL_DESTINATION ${CMAKE_INSTALL_CONFIGDIR}
+        PATH_VARS CMAKE_INSTALL_FULL_INCLUDEDIR
+    )
+
+    write_basic_package_version_file(${PROJECT_BINARY_DIR}/OggConfigVersion.cmake
+        VERSION ${PROJECT_VERSION}
+        COMPATIBILITY SameMajorVersion
+    )
+
+    install(FILES ${PROJECT_BINARY_DIR}/OggConfig.cmake ${PROJECT_BINARY_DIR}/OggConfigVersion.cmake
+        DESTINATION ${CMAKE_INSTALL_CONFIGDIR}
+    )
 endif()
