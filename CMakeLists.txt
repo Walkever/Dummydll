@@ -1,5 +1,10 @@
 CMAKE_MINIMUM_REQUIRED (VERSION 3.0)
 project(Dummydll)
+
+include(GNUInstallDirs)
+include(CheckIncludeFiles)
+include(CMakePackageConfigHelpers)
+
 option(BUILD_SHARED_LIBS "Build shared library" OFF)
 if(APPLE)
     option(BUILD_FRAMEWORK "Build Framework bundle for OSX" OFF)
@@ -7,6 +12,10 @@ endif()
 
 option(INSTALL_PKG_CONFIG_MODULE "Install dummy.pc file" ON)
 
+set(PROJECT_VERSION_MAJOR ${CMAKE_MATCH_1})
+set(PROJECT_VERSION_MINOR ${CMAKE_MATCH_2})
+set(PROJECT_VERSION_PATCH ${CMAKE_MATCH_3})
+set(PROJECT_VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
 
 set(DUMMY_HEADERS
     include/dummydll.h
