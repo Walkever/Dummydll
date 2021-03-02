@@ -20,6 +20,10 @@ set(DUMMY_SOURCES
     pch.cpp
 )
 
+if(BUILD_SHARED_LIBS)
+    set(BUILD_SHARED_LIBS TRUE)
+endif()
+
 function(configure_pkg_config_file pkg_config_file_in)
     set(prefix ${CMAKE_INSTALL_PREFIX})
     set(exec_prefix ${CMAKE_INSTALL_FULL_BINDIR})
