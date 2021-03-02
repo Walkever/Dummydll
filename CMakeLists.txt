@@ -22,6 +22,7 @@ set(DUMMY_SOURCES
 
 if(BUILD_SHARED_LIBS)
     set(BUILD_SHARED_LIBS TRUE)
+    add_definitions( -DBUILD_SHARED_LIBS=1 )
 endif()
 
 function(configure_pkg_config_file pkg_config_file_in)

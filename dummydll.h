@@ -1,5 +1,5 @@
 ﻿#pragma once
-#define BUILD_SHARED_LIBS
+
 #if defined (BUILD_SHARED_LIBS)
 #if defined (_MSC_VER)
 #pragma warning(disable: 4251)
