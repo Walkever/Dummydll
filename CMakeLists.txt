@@ -5,6 +5,7 @@ if(APPLE)
     option(BUILD_FRAMEWORK "Build Framework bundle for OSX" OFF)
 endif()
 
+option(INSTALL_PKG_CONFIG_MODULE "Install dummy.pc file" ON)
 
 
 set(DUMMY_HEADERS
@@ -89,17 +90,23 @@ if(INSTALL_CMAKE_PACKAGE_MODULE)
     )
    include(CMakePackageConfigHelpers)
 
-    configure_package_config_file(${PROJECT_SOURCE_DIR}/cmake/OggConfig.cmake.in ${PROJECT_BINARY_DIR}/OggConfig.cmake
+    configure_package_config_file(${PROJECT_SOURCE_DIR}/cmake/DummyConfig.cmake.in ${PROJECT_BINARY_DIR}/DummyConfig.cmake
         INSTALL_DESTINATION ${CMAKE_INSTALL_CONFIGDIR}
         PATH_VARS CMAKE_INSTALL_FULL_INCLUDEDIR
     )
 
-    write_basic_package_version_file(${PROJECT_BINARY_DIR}/OggConfigVersion.cmake
+    write_basic_package_version_file(${PROJECT_BINARY_DIR}/DummyConfigVersion.cmake
         VERSION ${PROJECT_VERSION}
         COMPATIBILITY SameMajorVersion
     )
 
-    install(FILES ${PROJECT_BINARY_DIR}/OggConfig.cmake ${PROJECT_BINARY_DIR}/OggConfigVersion.cmake
+    install(FILES ${PROJECT_BINARY_DIR}/DummyConfig.cmake ${PROJECT_BINARY_DIR}/DummyConfigVersion.cmake
         DESTINATION ${CMAKE_INSTALL_CONFIGDIR}
+    )
+endif()
+
+if(INSTALL_PKG_CONFIG_MODULE)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/dummy.pc
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
     )
 endif()
