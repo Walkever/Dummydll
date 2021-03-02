@@ -105,10 +105,10 @@ if(INSTALL_CMAKE_PACKAGE_MODULE)
     )
    include(CMakePackageConfigHelpers)
 
-#    configure_package_config_file(${PROJECT_SOURCE_DIR}/cmake/DummyConfig.cmake.in ${PROJECT_BINARY_DIR}/DummyConfig.cmake
-#        INSTALL_DESTINATION ${CMAKE_INSTALL_CONFIGDIR}
-#        PATH_VARS CMAKE_INSTALL_FULL_INCLUDEDIR
-#    )
+    configure_package_config_file(${PROJECT_SOURCE_DIR}/cmake/DummyConfig.cmake.in ${PROJECT_BINARY_DIR}/DummyConfig.cmake
+        INSTALL_DESTINATION ${CMAKE_INSTALL_CONFIGDIR}
+        PATH_VARS CMAKE_INSTALL_FULL_INCLUDEDIR
+    )
 
     write_basic_package_version_file(${PROJECT_BINARY_DIR}/DummyConfigVersion.cmake
         VERSION ${PROJECT_VERSION}
