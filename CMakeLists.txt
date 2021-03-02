@@ -31,16 +31,24 @@ endfunction()
 
 Add_library(Dummydll ${DUMMY_HEADERS} ${DUMMY_SOURCES})
 
-set(CMAKE_C_COMPILER gcc)
-set(CMAKE_C_FLAGS -m32)
-set(CMAKE_CXX_COMPILER g++)
-set(CMAKE_CXX_FLAGS -m32)
+#set(CMAKE_C_COMPILER gcc)
+#set(CMAKE_C_FLAGS -m32)
+#set(CMAKE_CXX_COMPILER g++)
+#set(CMAKE_CXX_FLAGS -m32)
 
 target_include_directories(Dummydll PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
+
+set(LIB_CURRENT ${CMAKE_MATCH_1})
+set(LIB_AGE ${CMAKE_MATCH_1})
+set(LIB_REVISION ${CMAKE_MATCH_1})
+set(LIB_SOVERSION ${CMAKE_MATCH_1})
+#math(EXPR LIB_SOVERSION "${LIB_CURRENT} + ${LIB_AGE}")
+
+set(LIB_VERSION "${LIB_SOVERSION}.${LIB_AGE}.${LIB_REVISION}")
 
 #set_target_properties(
 #    dummy PROPERTIES
@@ -61,7 +69,7 @@ if(BUILD_FRAMEWORK)
     )
 endif()
 
-#configure_pkg_config_file(dummy.pc.in)
+configure_pkg_config_file(dummy.pc.in)
 
 install(TARGETS Dummydll
     EXPORT dummyTargets

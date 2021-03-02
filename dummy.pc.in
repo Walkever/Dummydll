@@ -1,0 +1,14 @@
+# dummydll pkg-config file
+
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: dummydll
+Description: only for test
+Version: @VERSION@
+Requires:
+Conflicts:
+Libs: -L${libdir} -logg
+Cflags: -I${includedir}
