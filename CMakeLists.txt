@@ -1,6 +1,10 @@
 CMAKE_MINIMUM_REQUIRED (VERSION 3.0)
 project(Dummydll)
-Add_library(Dummydll SHARED dllmain.cpp dummydll.cpp dummydll.h pch.cpp pch.h targetver.h)
+option(BUILD_SHARED_LIBS "Build shared library" OFF)
+if(APPLE)
+    option(BUILD_FRAMEWORK "Build Framework bundle for OSX" OFF)
+endif()
+Add_library(Dummydll dllmain.cpp dummydll.cpp dummydll.h pch.cpp pch.h targetver.h)
 
 target_include_directories(Dummydll PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
