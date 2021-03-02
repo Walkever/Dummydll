@@ -9,15 +9,15 @@ option(INSTALL_PKG_CONFIG_MODULE "Install dummy.pc file" ON)
 
 
 set(DUMMY_HEADERS
-    dummydll.h
-    pch.h
-    targetver.h
+    include/dummydll.h
+    include/pch.h
+    include/targetver.h
 )
 
 set(DUMMY_SOURCES
-    dllmain.cpp
-    dummydll.cpp
-    pch.cpp
+    src/dllmain.cpp
+    src/dummydll.cpp
+    src/pch.cpp
 )
 
 if(BUILD_SHARED_LIBS)
