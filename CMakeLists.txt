@@ -4,13 +4,50 @@ option(BUILD_SHARED_LIBS "Build shared library" OFF)
 if(APPLE)
     option(BUILD_FRAMEWORK "Build Framework bundle for OSX" OFF)
 endif()
-Add_library(Dummydll dllmain.cpp dummydll.cpp dummydll.h pch.cpp pch.h targetver.h)
+
+
+
+set(DUMMY_HEADERS
+    dummydll.h
+    pch.h
+    targetver.h
+)
+
+set(DUMMY_SOURCES
+    dllmain.cpp
+    dummydll.cpp
+    pch.cpp
+)
+
+function(configure_pkg_config_file pkg_config_file_in)
+    set(prefix ${CMAKE_INSTALL_PREFIX})
+    set(exec_prefix ${CMAKE_INSTALL_FULL_BINDIR})
+    set(libdir ${CMAKE_INSTALL_FULL_LIBDIR})
+    set(includedir ${CMAKE_INSTALL_FULL_INCLUDEDIR})
+    set(VERSION ${PROJECT_VERSION})
+    string(REPLACE ".in" "" pkg_config_file ${pkg_config_file_in})
+    configure_file(${pkg_config_file_in} ${pkg_config_file} @ONLY)
+endfunction()
+
+Add_library(Dummydll ${DUMMY_HEADERS} ${DUMMY_SOURCES})
+
+set(CMAKE_C_COMPILER gcc)
+set(CMAKE_C_FLAGS -m32)
+set(CMAKE_CXX_COMPILER g++)
+set(CMAKE_CXX_FLAGS -m32)
 
 target_include_directories(Dummydll PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
+
+#set_target_properties(
+#    dummy PROPERTIES
+#    SOVERSION ${LIB_SOVERSION}
+#    VERSION ${LIB_VERSION}
+#    PUBLIC_HEADER "${DUMMY_HEADERS}"
+#)
 
 if(BUILD_FRAMEWORK)
     set_target_properties(dummy PROPERTIES
@@ -23,6 +60,8 @@ if(BUILD_FRAMEWORK)
         OUTPUT_NAME dummy
     )
 endif()
+
+#configure_pkg_config_file(dummy.pc.in)
 
 install(TARGETS Dummydll
     EXPORT dummyTargets
