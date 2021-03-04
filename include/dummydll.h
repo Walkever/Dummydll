@@ -15,6 +15,6 @@
 
 extern "C"
 {
-	DUMMYDLL_API float add(float a, float b);
-	DUMMYDLL_API float subtract(float a, float b);
+	DUMMYDLL_API float DummyAdd(float a, float b);
+	DUMMYDLL_API float DummySubtract(float a, float b);
 }
