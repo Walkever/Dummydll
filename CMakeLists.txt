@@ -45,14 +45,14 @@ function(configure_pkg_config_file pkg_config_file_in)
     configure_file(${pkg_config_file_in} ${pkg_config_file} @ONLY)
 endfunction()
 
-Add_library(Dummydll ${DUMMY_HEADERS} ${DUMMY_SOURCES})
+Add_library(DummyDll ${DUMMY_HEADERS} ${DUMMY_SOURCES})
 
 #set(CMAKE_C_COMPILER gcc)
 #set(CMAKE_C_FLAGS -m32)
 #set(CMAKE_CXX_COMPILER g++)
 #set(CMAKE_CXX_FLAGS -m32)
 
-target_include_directories(Dummydll PUBLIC
+target_include_directories(DummyDll PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
@@ -87,7 +87,7 @@ endif()
 
 configure_pkg_config_file(dummy.pc.in)
 
-install(TARGETS Dummydll
+install(TARGETS DummyDll
     EXPORT dummyTargets
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
