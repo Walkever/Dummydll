@@ -59,19 +59,19 @@ target_include_directories(DummyDll PUBLIC
 )
 
 set(LIB_CURRENT ${CMAKE_MATCH_1})
-set(LIB_AGE ${CMAKE_MATCH_1})
-set(LIB_REVISION ${CMAKE_MATCH_1})
-set(LIB_SOVERSION ${CMAKE_MATCH_1})
+set(LIB_AGE "1")
+set(LIB_REVISION "0")
+set(LIB_SOVERSION "0")
 #math(EXPR LIB_SOVERSION "${LIB_CURRENT} + ${LIB_AGE}")
 
 set(LIB_VERSION "${LIB_SOVERSION}.${LIB_AGE}.${LIB_REVISION}")
 
-#set_target_properties(
-#    dummy PROPERTIES
-#    SOVERSION ${LIB_SOVERSION}
-#    VERSION ${LIB_VERSION}
-#    PUBLIC_HEADER "${DUMMY_HEADERS}"
-#)
+set_target_properties(
+    DummyDll PROPERTIES
+    SOVERSION ${LIB_SOVERSION}
+    VERSION ${LIB_VERSION}
+    PUBLIC_HEADER "${DUMMY_HEADERS}"
+)
 
 if(BUILD_FRAMEWORK)
     set_target_properties(dummy PROPERTIES
