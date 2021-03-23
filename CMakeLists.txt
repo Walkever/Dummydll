@@ -1,7 +1,7 @@
 CMAKE_MINIMUM_REQUIRED (VERSION 3.0)
 project(Dummydll)
 
-message(STATUS "begin cmake")
+message( "begin cmake")
 include(GNUInstallDirs)
 include(CheckIncludeFiles)
 include(CMakePackageConfigHelpers)
@@ -128,8 +128,8 @@ if(INSTALL_PKG_CONFIG_MODULE)
 endif()
 
 if(VCPKG_IS_WORKING)
-    message(STATUS "VCPKG_IS_WORKING")
+    message( "VCPKG_IS_WORKING")
     file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/COPYING "Working")
 endif()
 
-message(STATUS "end cmake")
+message( "end cmake")
